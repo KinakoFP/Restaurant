@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+    margin-top: 20px;
+}
+
+/* Conteneur du tableau */
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style pour l'en-tête du tableau */
+th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style pour les cellules */
+td {
+    background-color: #ffffff;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Effet de survol des lignes */
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style de la cellule ID */
+td:first-child {
+    font-weight: bold;
+}
+
+/* Ligne de séparation sous l'en-tête */
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style pour le tableau vide ou si pas de données */
+tbody.empty {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+}
