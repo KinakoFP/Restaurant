@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Préparer la requête pour rechercher l'utilisateur dans la base de données
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE username = :username");
         $stmt->bindParam(':username', $username);
         $stmt->execute();
 
