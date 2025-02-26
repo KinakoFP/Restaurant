@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 
 // Inclusion des fichiers nécessaires
 require_once '../Controller/Register_control.php';
+require_once '../Controller/login_control.php';
+
 
 // Récupère la route demandée
 $route = $_GET['route'] ?? '';
@@ -12,6 +14,8 @@ $route = $_GET['route'] ?? '';
 // Définition des routes disponibles
 $routes = [
     'inscription' => 'registerUser',
+    'connexion' => 'loginUser',
+    'deconnexion' => 'logoutUser',
     'utilisateurs' => 'showUsers'
 ];
 

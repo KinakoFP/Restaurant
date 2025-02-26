@@ -1,35 +1,53 @@
 <?php
 
-// Inclure le fichier de connexion à la base de données
-require_once '../db.php';
+function loginUser() {
+    require_once "../Model/user.php"; // Assurez-vous que ce fichier contient la classe User avec les méthodes appropriées
+    session_start();
 
-// Vérifie si le formulaire a été soumis
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données du formulaire
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    try {
-        // Préparer la requête pour rechercher l'utilisateur dans la base de données
-        $stmt = $pdo->prepare("SELECT * FROM user WHERE username = :username");
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
+        $mail = trim($_POST['mail']);
+        $password = trim($_POST['password']);
 
-        // Récupérer l'utilisateur
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Vérifier si l'utilisateur existe et si le mot de passe est correct
-        if ($user && password_verify($password, $user['password'])) {
-            // Si le mot de passe est correct, connecter l'utilisateur (ex: démarrer une session)
-            echo "Connexion réussie, bienvenue " . $username . "!";
-            // Démarre une session pour garder l'utilisateur connecté
-        } else {
-            // Si l'utilisateur n'existe pas ou si le mot de passe est incorrect
-            echo "Identifiants invalides.";
+        // Vérifications des champs
+        if (empty($mail) || empty($password)) {
+            echo "Erreur : Tous les champs doivent être remplis.";
+            exit();
         }
-    } catch (PDOException $e) {
-        // Si une erreur survient
-        echo "Erreur : " . $e->getMessage();
+
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            echo "Erreur : Format d'email invalide.";
+            exit();
+        }
+
+        $user = new User();
+        $userData = $user->getUserByEmail($mail);
+
+        if (!$userData) {
+            echo "Erreur : Utilisateur non trouvé.";
+            exit();
+        }
+
+        // Vérification du mot de passe haché
+        if (!password_verify($password, $userData['password'])) {
+            echo "Erreur : Mot de passe incorrect.";
+            exit();
+        }
+
+        // Vérification si l'utilisateur est actif (si une colonne "status" existe dans la BDD)
+        if (isset($userData['status']) && $userData['status'] !== 'active') {
+            echo "Erreur : Compte inactif. Contactez un administrateur.";
+            exit();
+        }
+
+        // Démarrer la session utilisateur
+        $_SESSION['user_id'] = $userData['id'];
+        $_SESSION['username'] = $userData['username'];
+        $_SESSION['email'] = $userData['email'];
+
+        // Redirection après connexion
+        header("Location: ../pipi.php");
+        exit();
     }
 }
 ?>

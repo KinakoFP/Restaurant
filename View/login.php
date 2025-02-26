@@ -27,7 +27,7 @@
 </nav>
 
 <div class="wrapper">
-    <form action="login.php" method="post">
+    <form action="../routes/routes.php?route=connexion" method="post">
         <h1>Connexion</h1>
         <div class="input-box">
             <input type="text" name="username" placeholder="Nom d'utilisateur" required>
