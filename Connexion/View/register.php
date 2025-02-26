@@ -29,16 +29,16 @@
     <form action="../routes/routes.php?route=inscription" method="post" target="">
         <h1>Inscription</h1>
         <div class="input-box">
-            <input type="mail" name="mail" placeholder="Email" required>
-            <i class='bx bx-envelope'></i>
-        </div>
-        <div class="input-box">
-            <input type="name" name="name" placeholder="name" required>
+            <input type="name" name="name" placeholder="Nom" required>
             <i class='bx bx-book-bookmark'></i>        
         </div>
         <div class="input-box">
             <input type="text" name="username" placeholder="Nom d'utilisateur" required>
             <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+            <input type="mail" name="mail" placeholder="Email" required>
+            <i class='bx bx-envelope'></i>
         </div>
         <div class="input-box">
             <input type="password" name="password" placeholder="Mot de passe" required>
