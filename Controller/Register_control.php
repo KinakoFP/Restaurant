@@ -1,36 +1,39 @@
 <?php
-// connexion_action.php
+require_once '../Model/user.php';
 
-// Inclure le fichier de connexion à la base de données
-require_once 'db.php';
+function registerUser() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST['name'];
+        $mail = $_POST['mail'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-// Vérifie si le formulaire a été soumis
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données du formulaire
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    try {
-        // Préparer la requête pour rechercher l'utilisateur dans la base de données
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
-
-        // Récupérer l'utilisateur
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Vérifier si l'utilisateur existe et si le mot de passe est correct
-        if ($user && password_verify($password, $user['password'])) {
-            // Si le mot de passe est correct, connecter l'utilisateur (ex: démarrer une session)
-            echo "Connexion réussie, bienvenue " . $username . "!";
-            // Démarre une session pour garder l'utilisateur connecté
-        } else {
-            // Si l'utilisateur n'existe pas ou si le mot de passe est incorrect
-            echo "Identifiants invalides.";
+        $user = new User();
+        
+        // Vérifie si l'utilisateur existe déjà
+        if ($user->getUserByUsernameOrEmail($username, $mail)) {
+            echo "Erreur : L'utilisateur existe déjà.";
+            exit();
         }
-    } catch (PDOException $e) {
-        // Si une erreur survient
-        echo "Erreur : " . $e->getMessage();
+
+        // Hachage du mot de passe
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Génération d'un identifiant unique à 11 caractères
+        function generateIdent() {
+            return substr(bin2hex(random_bytes(6)), 0, 11);
+        }        
+        $ident = generateIdent();
+
+        // Ajout dans la base de données
+        if ($user->addUser($ident, $name, $username, $hashedPassword, $mail)) {
+            // Rediriger vers la liste des utilisateurs
+            header("Location: index.php?route=utilisateurs");
+            exit();
+        } else {
+            echo "Erreur lors de l'inscription.";
+        }
     }
 }
+
 ?>

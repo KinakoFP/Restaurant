@@ -3,19 +3,24 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Inclusion des fichiers nécessaires
+require_once '../Controller/Register_control.php';
+
 // Récupère la route demandée
 $route = $_GET['route'] ?? '';
 
 // Définition des routes disponibles
 $routes = [
-    'connexion' => '/connexion.php',
-    'inscription' => '/inscription.php',
+    'inscription' => 'registerUser',
+    'utilisateurs' => 'showUsers'
 ];
 
 // Vérifie si la route existe
 if (array_key_exists($route, $routes)) {
-    require_once __DIR__ . '/../' . $routes[$route];
+    $function = $routes[$route];
+    $function(); // Appelle la fonction correspondante
 } else {
     http_response_code(404);
-    echo json_encode(["error" => "Route non trouvée"]);
+    echo "Page non trouvée.";
 }
+?>
