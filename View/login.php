@@ -30,7 +30,7 @@
     <form action="../routes/routes.php?route=connexion" method="post">
         <h1>Connexion</h1>
         <div class="input-box">
-            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="mail" name="mail" placeholder="Email" required>
             <i class='bx bxs-user'></i>
         </div>
         <div class="input-box">
@@ -41,6 +41,11 @@
             <label><input type="checkbox" name="remember">Se souvenir de moi</label>
             <a href="#">Mot de passe oublié</a>
         </div>
+        <?php
+            if (isset($_GET['error'])) {
+                echo '<div class="error-popup">' . htmlspecialchars($_GET['error']) . '</div>';
+            }
+        ?>
         <button type="submit" class="btn">Connexion</button>
     </form>
 </div>

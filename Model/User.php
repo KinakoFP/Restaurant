@@ -13,6 +13,12 @@ class User extends Database {
         return $q->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getUserByEmail($mail) {
+        $stmt = $this->pdo->prepare("SELECT * FROM user WHERE mail = ?");
+        $stmt->execute([$mail]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Récupérer un utilisateur par username ou email
     public function getUserByUsernameOrEmail($username, $mail) {
         $stmt = $this->pdo->prepare("SELECT * FROM user WHERE username = ? OR mail = ?");
@@ -31,7 +37,7 @@ class User extends Database {
         $q = $this->pdo->prepare("INSERT INTO user (ident, name, username, password, mail) VALUES (?, ?, ?, ?, ?)");
         return $q->execute([$ident, $name, $username, $password, $mail]);
     }  
-      
+
     // Mettre à jour un utilisateur
     public function updateUser($id, $ident, $name, $username, $password, $mail) {
         $q = $this->pdo->prepare("UPDATE user SET ident = ?, name = ?, username = ?, password = ?, mail = ? WHERE id = ?");

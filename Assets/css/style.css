@@ -157,6 +157,17 @@ li#secondHomePage{
     margin: 0 auto; /* Centre la div horizontalement */
 }
 
+.error-popup {
+    backdrop-filter: blur(5px);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;
+    font-weight: bold;
+}
+
 .login-container{
     position: absolute;
     width: 500px;
