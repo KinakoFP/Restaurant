@@ -3,14 +3,26 @@ require_once '../Model/user.php';
 
 function registerUser() {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST['name'];
-        $mail = $_POST['mail'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $name = trim($_POST['name']);
+        $mail = trim($_POST['mail']);
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
+
+        // Vérification si les champs sont vides
+        if (empty($name) || empty($mail) || empty($username) || empty($password)) {
+            echo "Erreur : Tous les champs doivent être remplis.";
+            exit();
+        }
+
+        // Validation du format de l'email
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+            echo "Erreur : Format d'email invalide.";
+            exit();
+        }
 
         $user = new User();
         
-        // Vérifie si l'utilisateur existe déjà
+        // Vérifie si l'utilisateur existe déjà par username ou email
         if ($user->getUserByUsernameOrEmail($username, $mail)) {
             echo "Erreur : L'utilisateur existe déjà.";
             exit();
@@ -35,5 +47,4 @@ function registerUser() {
         }
     }
 }
-
 ?>

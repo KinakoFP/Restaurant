@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,15 +10,15 @@
     <link rel="stylesheet" href="../Assets/css/nav.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
-<body id="register">
+<body>
 <nav class="nav">
     <div class="nav-logo">
         <p>Restaurant</p>
     </div>
     <div class="nav-button">
-        <form action="login.php" method="post">
+        <form method="post">
             <button class="btn white-btn" id="loginBtn" type="submit">Connexion</button>
-            <button class="btn" id="registerBtn" type="button" onclick="redirectToJoin()">Inscription</button>
+            <button class="btn" id="registerBtn" type="button">Inscription</button>
         </form>
     </div>
     <div class="nav-menu-btn">
@@ -26,25 +27,26 @@
 </nav>
 
 <div class="wrapper">
-    <form action="../routes/routes.php?route=inscription" method="post" target="">
-        <h1>Inscription</h1>
+    <form action="../routes/routes.php?route=connexion" method="post">
+        <h1>Connexion</h1>
         <div class="input-box">
-            <input type="mail" name="mail" placeholder="mail" required>
-            <i class='bx bxs-mail'></i>
-        </div>
-        <div class="input-box">
-            <input type="name" name="name" placeholder="name" required>
-            <i class='bx bxs-mail'></i>
-        </div>
-        <div class="input-box">
-            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="mail" name="mail" placeholder="Email" required>
             <i class='bx bxs-user'></i>
         </div>
         <div class="input-box">
             <input type="password" name="password" placeholder="Mot de passe" required>
             <i class='bx bxs-lock-alt'></i>
         </div>
-        <button type="submit" class="btn">Inscription</button>
+        <div class="remember-forgot">
+            <label><input type="checkbox" name="remember">Se souvenir de moi</label>
+            <a href="#">Mot de passe oublié</a>
+        </div>
+        <?php
+            if (isset($_GET['error'])) {
+                echo '<div class="error-popup">' . htmlspecialchars($_GET['error']) . '</div>';
+            }
+        ?>
+        <button type="submit" class="btn">Connexion</button>
     </form>
 </div>
 <script src="../Assets/js/script.js"></script>
