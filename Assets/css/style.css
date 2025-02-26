@@ -1,0 +1,189 @@
+/* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h2{
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+p.present{
+    font-size: medium;
+}
+
+h2#secondHomePage{
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em pink, 0 0 0.2em pink;
+    margin-bottom: revert;
+    font-size: 250%;
+}
+
+h3#secondHomePage{
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em pink, 0 0 0.2em pink;
+}
+
+a#secondHomePage{
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em pink, 0 0 0.2em pink;
+}
+
+p#secondHomePage{
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em pink, 0 0 0.2em pink;
+    font-size: small;
+}
+
+li#secondHomePage{
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em pink, 0 0 0.2em pink;
+}
+
+#botsButton{
+    margin-top: 20px;
+    background: rgb(241, 205, 213, 0.7);
+}
+
+#botsButton:hover{
+    margin-top: 20px;
+    background: rgb(241, 205, 213, 1);
+}
+
+
+#second-btn.nav-button{
+    align-items: end;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: linear-gradient(rgba(39, 39, 39, 0.6), transparent);
+    z-index: 100;
+}
+
+.nav-logo p {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.nav-menu ul {
+    display: flex;
+}
+
+.nav-menu ul li {
+    list-style-type: none;
+}
+
+.nav-menu ul li .link {
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+    padding-bottom: 15px;
+    margin: 0 25px;
+}
+
+.link:hover{
+    border-bottom: 2px solid #c9c9c9;
+}
+
+.link.active{
+    border-bottom: 2px solid #fff;
+}
+
+.nav-button .btn {
+    width: 130px;
+    height: 40px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+#registerBtn {
+    margin-left: 15px;
+}
+
+.btn.white-btn {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.btn.btn.white-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.nav-menu-btn {
+    display: none;
+}
+
+.nav.blurred {
+    backdrop-filter: blur(5px);
+    background: rgb(131 131 131 / 12%);
+    transition: backdrop-filter 0.8s ease, background 0.8s ease;
+}
+
+.form-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 512px;
+    height: 420px;
+    overflow: hidden;
+    z-index: 2;
+    margin: 0 auto; /* Centre la div horizontalement */
+}
+
+.login-container{
+    position: absolute;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+
+/* Initial settings for visibility */
+.login-container {
+    left: 4px;
+}
+
+@media only screen and (max-width: 540px) {
+    .wrapper {
+        min-height: 100vh;
+    }
+    .form-box {
+        width: 100%;
+        height: 500px;
+    }
+    .login-container {
+        width: 100%;
+        padding: 0 20px;
+    }
+    .two-forms {
+        flex-direction: column;
+        gap: 0;
+    }
+}
