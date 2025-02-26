@@ -1,12 +1,21 @@
+<?php
+header('Content-Type: application/json');
+
+echo json_encode([
+    "message" => "Inscription réussie !"
+]);
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "Connexion"; ?></title>
-    <link rel="stylesheet" href="./Assets/css/style.css">
-    <link rel="stylesheet" href="./Assets/css/login.css">
-    <link rel="stylesheet" href="./Assets/css/nav.css">
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <link rel="stylesheet" href="../Assets/css/login.css">
+    <link rel="stylesheet" href="../Assets/css/nav.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
@@ -43,7 +52,7 @@
         <button type="submit" class="btn">Connexion</button>
     </form>
 </div>
-<script src="./Assets/js/script.js"></script>
+<script src="../Assets/js/script.js"></script>
 
 </body>
 </html>
