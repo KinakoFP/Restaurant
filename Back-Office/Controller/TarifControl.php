@@ -1,18 +1,19 @@
 <?php
 // Inclure le modèle
-include '../Model/ticket.php';
+include '../Model/tarif.php';
 
 // Créer une instance du modèle
-$model = new Ticket();
+$model = new tarif();
 
 // Vérifier l'action (supprimer ou modifier)
     $action = $_GET['action'];
-    $ticketId = $_GET['id'];
+    $tarifId = $_GET['id_prestation'];
+    $prix = $_GET['prix'];
     if ($action === 'delete') {
         // Supprimer le ticket
-        $model->deleteTicket($ticketId);
+        $model->deleteTarif($tarifId, $prix);
     }
 
-header('Location: ../View/ticketView.php');
+header('Location: ../View/tarifView.php');
 
 ?>

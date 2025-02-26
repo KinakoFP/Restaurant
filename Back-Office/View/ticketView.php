@@ -1,7 +1,8 @@
 <?php
-// Vue PHP pour afficher les tickets
-    $model_ticket = new Ticket();
-    $tickets = $model_ticket->getTicket();
+// Inclure le modèle
+include '../Model/ticket.php';
+$model = new Ticket();
+$tickets = $model->getTicket();
 ?>
 
 <!DOCTYPE html>
@@ -21,14 +22,19 @@
                 <th>ID Ticket</th>
                 <th>ID Prestation</th>
                 <th>Nombre de Prestations</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($tickets as $ticket): ?>
                 <tr>
                     <td><?= htmlspecialchars($ticket['id_ticket']) ?></td>
-                    <td><?= htmlspecialchars($ticket['id_prestation']) ?></td>
-                    <td><?= htmlspecialchars($ticket['nb_prestation']) ?></td>
+                    <td><?= htmlspecialchars($ticket['id_carte']) ?></td>
+                    <td><?= htmlspecialchars($ticket['date_achat']) ?></td>
+                    <td>
+                    <a href="../Controller/TicketControl.php?action=edit&id=<?= $ticket['id_ticket'] ?>" class="btn-modifier">Modifier</a>
+                    <a href="../Controller/TicketControl.php?action=delete&id=<?= $ticket['id_ticket'] ?>" class="btn-supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce ticket ?');">Supprimer</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

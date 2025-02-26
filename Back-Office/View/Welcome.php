@@ -37,10 +37,16 @@ $userName = $_SESSION['username'];
     </header>
 
     <main>
-        <section class="welcome-section">
-            <h1>Bienvenue, <?php echo htmlspecialchars($userName); ?> !</h1>
-            <p>Nous sommes ravis de vous voir sur votre espace de travail. Vous pouvez accéder à vos données !</p>
-        </section>
+    <section class="welcome-section">
+        <h1>Bienvenue, <?php echo htmlspecialchars($userName); ?> !</h1>
+        <p>Nous sommes ravis de vous voir sur votre espace de travail. Vous pouvez accéder à vos données !</p>
+
+        <div class="welcome-buttons">
+            <a href="tarifView.php" class="btn-welcome">Voir les Tarifs</a>
+            <a href="ticketView.php" class="btn-welcome">Gérer les Tickets</a>
+        </div>
+    </section>
+
     </main>
 
     <footer>
